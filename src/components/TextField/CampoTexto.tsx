@@ -11,7 +11,7 @@ const CampoTexto: React.FC<Props> = props => {
             : `insira seu ${props.campo}`
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center w-full">
             {/* <p>{props.campo}</p> */}
             <div>
                 <input

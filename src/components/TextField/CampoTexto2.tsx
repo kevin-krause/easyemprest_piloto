@@ -12,7 +12,7 @@ const CampoTexto2: React.FC<Props> = props => {
 
     console.log(long_)
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col items-center w-full">
             {/* <p>{props.campo}</p> */}
             <div>
                 <input

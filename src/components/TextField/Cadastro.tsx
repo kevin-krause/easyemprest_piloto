@@ -3,6 +3,7 @@ import CampoTexto from './CampoTexto'
 import CampoTexto2 from './CampoTexto2'
 import Header from '../Header'
 import Link from 'next/link'
+import ButtonLogin from '../Button/ButtonLogin'
 
 const Login = () => {
     return (
@@ -10,15 +11,26 @@ const Login = () => {
             <Header />
             <div className="flex flex-col items-center justify-center">
                 <div className="">
-                    <div className="mb-6">
-                        <CampoTexto campo="Email" />
-                    </div>
-                    <span className="block border-b-[1px] border-zinc-200 w-auto h-px"></span>
+                    <h1 className="text-zinc-900 text-4xl font-light mb-2 text-center">
+                        Crie sua conta agora mesmo!
+                    </h1>
+                    <p className="text-zinc-400 text-center">
+                        Solicite empréstimos de forma rápida e segura 🔒
+                    </p>
 
-                    <div>
+                    <span className="block border-b-[1px] border-zinc-200 w-auto h-px"></span>
+                    <div className="mb-6">
+                        <CampoTexto campo="email" />
                         <CampoTexto campo="senha" />
                         <CampoTexto2 campo="senha" />
                     </div>
+
+                    <div className="flex justify-center">
+                        {' '}
+                        {/* Adicionada a classe "flex justify-center" */}
+                        <ButtonLogin campo={'cadastro'} />
+                    </div>
+
                     <p className="text-zinc-400 mt-5 text-sm text-center">
                         Já tem uma conta?{' '}
                         <Link
