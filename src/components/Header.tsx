@@ -10,6 +10,9 @@ const Header = () => {
             <Link className="mr-[10px] text-zinc-100" href={'/login'}>
                 Login
             </Link>
+            <Link className="mr-[10px] text-zinc-100" href={'/admin'}>
+                Admin
+            </Link>
         </div>
     )
 }

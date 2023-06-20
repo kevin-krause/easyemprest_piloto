@@ -1,5 +1,6 @@
 import React from 'react'
 import Emprestimo from './ClientEmprestimo/Emprestimo'
+import Button from './Button'
 
 const Home = () => {
     return (
@@ -16,6 +17,9 @@ const Home = () => {
                 </p>
                 <div className="mt-7">
                     <Emprestimo />
+                    <div className='mt-10'>
+                        <Button />
+                    </div>
                 </div>
             </div>
         </div>
