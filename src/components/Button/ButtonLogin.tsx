@@ -11,7 +11,7 @@ const ButtonLogin: React.FC<Props> = props => {
         <div className="items-center mt-3">
             <a
                 href="#"
-                className="p-3 border-[1px] rounded-xl hover:bg-zinc-800 hover:text-zinc-100 shadow hover:shadow-lg"
+                className="p-3 border-[1px] rounded-xl bg-green-300 hover:bg-zinc-900 hover:text-green-300 shadow hover:shadow-lg"
             >
                 {botao}
             </a>

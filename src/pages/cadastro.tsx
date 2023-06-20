@@ -4,7 +4,7 @@ import React from 'react'
 
 const login = () => {
     return (
-        <div className="p-6">
+        <div>
             <Cadastro />
         </div>
     )
