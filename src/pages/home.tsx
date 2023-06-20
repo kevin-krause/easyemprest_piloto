@@ -6,7 +6,7 @@ const home = () => {
     return (
         <div>
             <Header />
-            <div className="flex p-6">
+            <div className="mt-6">
                 <Home />
             </div>
         </div>

@@ -3,7 +3,7 @@ import CampoTexto from './CampoTexto'
 
 const Emprestimo = () => {
     return (
-        <div>
+        <div className="text-left">
             <CampoTexto campo="CPF" type="number" />
             <CampoTexto campo="Nome completo" type="text" />
             <CampoTexto campo="Endereço" type="text" />

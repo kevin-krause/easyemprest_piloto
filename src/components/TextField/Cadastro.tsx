@@ -10,14 +10,13 @@ const Login = () => {
         <div>
             <Header />
             <div className="flex flex-col items-center justify-center">
-                <div className="">
+                <div className="flex flex-col justify-center">
                     <h1 className="text-zinc-900 text-4xl font-light mb-2 text-center">
                         Crie sua conta agora mesmo!
                     </h1>
                     <p className="text-zinc-400 text-center">
-                        Solicite empréstimos de forma rápida e segura 🔒
+                        empréstimos de forma rápida e segura ✨
                     </p>
-
                     <span className="block border-b-[1px] border-zinc-200 w-auto h-px"></span>
                     <div className="mb-6">
                         <CampoTexto campo="email" />
