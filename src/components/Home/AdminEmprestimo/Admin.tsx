@@ -72,6 +72,17 @@ const Admin: React.FC = () => {
         }
     }
 
+    const handleEdit = (id_client: string) => {
+        console.log(`Editar linha com ID ${id_client}`)
+    }
+
+    const formatCurrency = (value: number): string => {
+        return value.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })
+    }
+
     return (
         <div className="p-6 m-4 w-auto bg-white border border-gray-200 rounded-lg flex justify-center items-center">
             <table className="gri grid-rows-1 text-left">
@@ -96,7 +107,9 @@ const Admin: React.FC = () => {
                             <td className="py-2 px-4">{item.cpf}</td>
                             <td className="py-2 px-4">{item.nome}</td>
                             <td className="py-2 px-4">{item.endereco}</td>
-                            <td className="py-2 px-4">{item.valor}</td>
+                            <td className="py-2 px-4">
+                                {formatCurrency(item.valor)}
+                            </td>
                             <td className="py-2 px-4">{item.status}</td>
                             <td className="py-2 px-4">
                                 <button
