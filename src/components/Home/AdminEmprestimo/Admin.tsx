@@ -72,10 +72,6 @@ const Admin: React.FC = () => {
         }
     }
 
-    const handleEdit = (id_client: string) => {
-        console.log(`Editar linha com ID ${id_client}`)
-    }
-
     return (
         <div className="p-6 m-4 w-auto bg-white border border-gray-200 rounded-lg flex justify-center items-center">
             <table className="gri grid-rows-1 text-left">
@@ -122,12 +118,6 @@ const Admin: React.FC = () => {
                                     className="btn-action bg-zinc-500 text-white p-1 rounded-lg text-sm m-1"
                                 >
                                     Excluir
-                                </button>
-                                <button
-                                    onClick={() => handleEdit(item.id_client)}
-                                    className="btn-action bg-blue-500 text-white p-1 rounded-lg text-sm m-1"
-                                >
-                                    Editar
                                 </button>
                             </td>
                         </tr>
