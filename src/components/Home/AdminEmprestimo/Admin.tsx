@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 interface DataItem {
-    id: number
+    id_client: string
     cpf: string
     nome: string
     endereco: string
@@ -10,58 +11,74 @@ interface DataItem {
 }
 
 const Admin: React.FC = () => {
-    const [data, setData] = useState<DataItem[]>([
-        {
-            id: 1,
-            cpf: '1234567890',
-            nome: 'Fulano de Tal',
-            endereco: 'Rua A, 123',
-            valor: 100.0,
-            status: 'pendente'
-        },
-        {
-            id: 2,
-            cpf: '0987654321',
-            nome: 'Ciclano da Silva',
-            endereco: 'Avenida B, 456',
-            valor: 200.0,
-            status: 'pendente'
+    const [data, setData] = useState<DataItem[]>([])
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get(
+                    'http://127.0.0.1:8000/clientes/'
+                )
+                setData(response.data)
+            } catch (error) {
+                console.error('Erro ao buscar os dados da API:', error)
+            }
         }
-        // Add more example data here, if necessary
-    ])
 
-    const handleApprove = (id: number) => {
-        const updatedData = data.map(item => {
-            if (item.id === id) {
-                return { ...item, status: 'aprovado' }
-            }
-            return item
-        })
-        setData(updatedData)
+        fetchData()
+    }, [])
+
+    const handleApprove = async (id_client: string) => {
+        try {
+            await axios.patch(`http://127.0.0.1:8000/clientes/${id_client}/`, {
+                status: 'aprovado'
+            })
+            const updatedData = data.map(item =>
+                item.id_client === id_client
+                    ? { ...item, status: 'aprovado' }
+                    : item
+            )
+            setData(updatedData)
+        } catch (error) {
+            console.error('Erro ao atualizar o status:', error)
+        }
     }
 
-    const handleReject = (id: number) => {
-        const updatedData = data.map(item => {
-            if (item.id === id) {
-                return { ...item, status: 'reprovado' }
-            }
-            return item
-        })
-        setData(updatedData)
+    const handleReject = async (id_client: string) => {
+        try {
+            await axios.patch(`http://127.0.0.1:8000/clientes/${id_client}/`, {
+                status: 'reprovado'
+            })
+            const updatedData = data.map(item =>
+                item.id_client === id_client
+                    ? { ...item, status: 'reprovado' }
+                    : item
+            )
+            setData(updatedData)
+        } catch (error) {
+            console.error('Erro ao atualizar o status:', error)
+        }
     }
 
-    const handleDelete = (id: number) => {
-        const updatedData = data.filter(item => item.id !== id)
-        setData(updatedData)
+    const handleDelete = async (id_client: string) => {
+        try {
+            await axios.delete(`http://127.0.0.1:8000/clientes/${id_client}/`)
+            const updatedData = data.filter(
+                item => item.id_client !== id_client
+            )
+            setData(updatedData)
+        } catch (error) {
+            console.error('Erro ao excluir o item:', error)
+        }
     }
 
-    const handleEdit = (id: number) => {
-        console.log(`Edit row with ID ${id}`)
+    const handleEdit = (id_client: string) => {
+        console.log(`Editar linha com ID ${id_client}`)
     }
 
     return (
-        <div className="p-6 m-4 w-auto bg-white border border-gray-200 rounded-lg">
-            <table className="gri grid-rows-7 items-center text-left">
+        <div className="p-6 m-4 w-auto bg-white border border-gray-200 rounded-lg flex justify-center items-center">
+            <table className="gri grid-rows-1 text-left">
                 <thead>
                     <tr className="bg-gray-100">
                         <th className="py-2 px-4">ID</th>
@@ -75,8 +92,11 @@ const Admin: React.FC = () => {
                 </thead>
                 <tbody>
                     {data.map(item => (
-                        <tr key={item.id} className="border-t border-gray-200">
-                            <td className="py-2 px-4">{item.id}</td>
+                        <tr
+                            key={item.id_client}
+                            className="border-t border-gray-200"
+                        >
+                            <td className="py-2 px-4">{item.id_client}</td>
                             <td className="py-2 px-4">{item.cpf}</td>
                             <td className="py-2 px-4">{item.nome}</td>
                             <td className="py-2 px-4">{item.endereco}</td>
@@ -84,26 +104,28 @@ const Admin: React.FC = () => {
                             <td className="py-2 px-4">{item.status}</td>
                             <td className="py-2 px-4">
                                 <button
-                                    onClick={() => handleApprove(item.id)}
-                                    className="btn-action bg-green-500 text-white"
+                                    onClick={() =>
+                                        handleApprove(item.id_client)
+                                    }
+                                    className="btn-action bg-green-500 text-white p-1 rounded-lg text-sm m-1"
                                 >
                                     Aprovar
                                 </button>
                                 <button
-                                    onClick={() => handleReject(item.id)}
-                                    className="btn-action bg-red-500 text-white"
+                                    onClick={() => handleReject(item.id_client)}
+                                    className="btn-action bg-red-500 text-white p-1 rounded-lg text-sm m-1"
                                 >
                                     Reprovar
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(item.id)}
-                                    className="btn-action bg-red-500 text-white"
+                                    onClick={() => handleDelete(item.id_client)}
+                                    className="btn-action bg-zinc-500 text-white p-1 rounded-lg text-sm m-1"
                                 >
                                     Excluir
                                 </button>
                                 <button
-                                    onClick={() => handleEdit(item.id)}
-                                    className="btn-action bg-blue-500 text-white"
+                                    onClick={() => handleEdit(item.id_client)}
+                                    className="btn-action bg-blue-500 text-white p-1 rounded-lg text-sm m-1"
                                 >
                                     Editar
                                 </button>
