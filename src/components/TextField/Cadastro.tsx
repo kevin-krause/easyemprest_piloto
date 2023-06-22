@@ -39,7 +39,7 @@ const Login = () => {
                         </Link>
                     </p>
                 </div>
-                <div className="mt-11 items-right rounded-xl mb-5 border-b-[4px] border-green-300">
+                <div className="mt-11 items-center rounded-xl mb-5 border-b-[4px] border-green-300">
                     <img
                         src="https://api.creditas.io/creditas-site/_next/image?url=https%3A%2F%2Fimages.ctfassets.net%2Fn3x4bsh5l2so%2F14YSQ2Ot0aiNbz9DlxO9pS%2Fd6abadd6183f9e72652cf3749f0ecbf9%2Fsolu____es_creditas_-_Compra.png&w=640&q=75"
                         className="rounded-xl h-auto w-auto"

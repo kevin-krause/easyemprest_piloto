@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { format } from 'date-fns'
+import ptBR from 'date-fns/locale/pt-BR'
 
 interface DataItem {
     id_client: string
@@ -8,6 +10,7 @@ interface DataItem {
     endereco: string
     valor: number
     status: string
+    data_solicitado: string
 }
 
 const Admin: React.FC = () => {
@@ -83,12 +86,20 @@ const Admin: React.FC = () => {
         })
     }
 
+    const formatDataSolicitado = (data_solicitado: string): string => {
+        const parsedDate = new Date(data_solicitado)
+        return format(parsedDate, 'dd/MM/yyyy HH:mm:ss', {
+            locale: ptBR,
+            timeZone: 'America/Sao_Paulo'
+        })
+    }
+
     return (
         <div className="p-6 m-4 w-auto bg-white border border-gray-200 rounded-lg flex justify-center items-center">
             <table className="gri grid-rows-1 text-left">
                 <thead>
                     <tr className="bg-gray-100">
-                        <th className="py-2 px-4">ID</th>
+                        <th className="py-2 px-4">Data</th>
                         <th className="py-2 px-4">CPF</th>
                         <th className="py-2 px-4">Nome</th>
                         <th className="py-2 px-4">Endereço</th>
@@ -103,7 +114,9 @@ const Admin: React.FC = () => {
                             key={item.id_client}
                             className="border-t border-gray-200"
                         >
-                            <td className="py-2 px-4">{item.id_client}</td>
+                            <td className="py-2 px-4">
+                                {formatDataSolicitado(item.data_solicitado)}
+                            </td>
                             <td className="py-2 px-4">{item.cpf}</td>
                             <td className="py-2 px-4">{item.nome}</td>
                             <td className="py-2 px-4">{item.endereco}</td>
